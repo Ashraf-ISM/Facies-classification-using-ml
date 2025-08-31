@@ -25,7 +25,7 @@ The main tasks are:
 ## 🛠 Workflow
 
 **Step 1 – Data Exploration**
-- Load `facies_vectors.csv`
+- Load `input_pilot_data.csv`
 - Plot histograms, cross-plots, and statistical summaries
 - Identify key features (GR, resistivity, density, porosity, PE, etc.)
 
