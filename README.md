@@ -320,17 +320,7 @@ plot_confusion_matrix(y_true, y_pred, facies_labels)
 
 ---
 
-## 📊 Results & Model Performance
 
-### Supervised Classification
-
-| Model | Accuracy | Weighted F1 | Adjacent Accuracy | Cross-Val (5-fold) |
-|-------|----------|-------------|-------------------|---------------------|
-| Random Forest | *(add %)* | *(add)* | *(add %)* | *(add ± std)* |
-| SVM (RBF Kernel) | *(add %)* | *(add)* | *(add %)* | *(add ± std)* |
-| XGBoost | *(add %)* | *(add)* | *(add %)* | *(add ± std)* |
-
-> 💡 **Tip:** Fill in your actual scores from your notebook outputs — one real number dramatically increases recruiter and researcher engagement.
 
 ### Key Visualizations Produced
 
