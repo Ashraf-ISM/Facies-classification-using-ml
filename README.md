@@ -1,92 +1,250 @@
-# 🛢️ Facies Classification Using Machine Learning  
+# 🪨 Facies Classification using Machine Learning
 
-> 🔬 A machine learning pipeline for **electrofacies classification** from subsurface well log data.  
-> Developed as part of a **Case Study at IIT(ISM) Dhanbad**, this project combines **supervised** and **unsupervised ML methods** to generate and validate facies profiles.  
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-Boosting-EC4E20?style=for-the-badge)
+![Pandas](https://img.shields.io/badge/Pandas-Data-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)
 
----
-
-## 🏷️ Project Badges  
-
-[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)  
-[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg?logo=jupyter)](https://jupyter.org/)  
-[![Scikit-learn](https://img.shields.io/badge/ML-ScikitLearn-F7931E.svg?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)  
-[![Pandas](https://img.shields.io/badge/Data-Pandas-150458.svg?logo=pandas&logoColor=white)](https://pandas.pydata.org/)  
-[![Matplotlib](https://img.shields.io/badge/Viz-Matplotlib-004C99.svg?logo=plotly&logoColor=white)](https://matplotlib.org/)  
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)  
-[![Stars](https://img.shields.io/github/stars/ashraf-iit-ism/Facies-classification-using-ml?style=social)](https://github.com/ashraf-iit-ism/Facies-classification-using-ml/stargazers)  
+> **Automated geological facies prediction from well log data using supervised machine learning — bridging geoscience domain knowledge with modern ML workflows.**
 
 ---
 
-## 📖 Overview  
+## 📌 Project Overview
 
-Facies classification is critical in petroleum exploration and reservoir characterization.  
-This project builds a **continuous electrofacies profile** from wireline logs, using:  
+Facies classification is a critical step in subsurface reservoir characterization. Traditionally, it relies on time-consuming manual interpretation by petrophysicists. This project automates that process using supervised machine learning models trained on well log data.
 
-- **Supervised ML models** → Random Forest, SVM, Gradient Boosting  
-- **Unsupervised ML methods** → K-Means clustering  
-- **Visualization** → facies logs, confusion matrices, cross-plots  
+By learning patterns in petrophysical measurements (GR, Resistivity, Density, Neutron Porosity, Sonic), the models can predict lithofacies labels across unlabeled intervals — enabling faster, more consistent reservoir zonation at scale.
 
-The final goal is to evaluate ML-driven facies predictions against **interpreted lithofacies** for improved geological insight.  
+This project demonstrates an end-to-end ML pipeline applicable to real-world E&P (Exploration & Production) workflows, covering everything from raw data preprocessing to model evaluation and facies visualization.
 
 ---
 
-## 📄 Problem Statement  
+## 🎯 Objectives
 
-The dataset comes from a University of Kansas exercise (Bohling & Dubois, 2003; Dubois et al., 2007).  
-It includes wireline logs from **nine wells** in the Hugoton and Panoma gas fields (North America).  
-Each depth sample is labeled with a **facies type** derived from core observations.  
-
-### 🎯 Objectives  
-- Explore & analyze the dataset (distributions, cross-plots, histograms)  
-- Prepare logs for modeling (missing data, PE log synthesis, scaling)  
-- Train & evaluate supervised ML classifiers  
-- Apply K-Means clustering for electrofacies generation  
-- Compare predictions/clusters with lithofacies  
-- Visualize results for interpretation  
-- Document workflow & findings 
+- Preprocess and engineer features from multi-log well data for ML readiness
+- Train and compare multiple supervised classification algorithms for facies prediction
+- Evaluate model performance using cross-validation and classification metrics
+- Visualize predicted vs. actual facies logs to assess geological consistency
+- Build a reproducible, modular workflow that can be applied to new wells
 
 ---
 
-## 🛠 Workflow  
+## 🗃️ Dataset Description
 
-**Step 1 – Data Exploration**  
-📊 Load dataset → generate histograms, distributions, cross-plots  
+The dataset consists of **well log measurements** commonly acquired during wireline logging operations in oil & gas exploration.
 
-**Step 2 – Data Preparation**  
-🧹 Handle missing values → log generation → scaling  
+| Log | Symbol | Geological Significance |
+|-----|--------|------------------------|
+| Gamma Ray | GR | Shale volume estimation; distinguishes sands from shales |
+| Resistivity | RT / ILD | Hydrocarbon vs. brine-saturated zones; fluid typing |
+| Bulk Density | RHOB | Porosity estimation; lithology indicator |
+| Neutron Porosity | NPHI | Porosity; gas effect detection when paired with RHOB |
+| Sonic | DT | Porosity; mechanical properties; seismic-to-well tie |
 
-**Step 3 – Model Training**  
-🤖 Supervised ML → RandomForest, SVM, GradientBoosting  
-🔍 Unsupervised ML → K-Means clustering  
+**Target Variable:** Discrete facies labels (e.g., Sandstone, Shale, Limestone, Dolomite, etc.)
 
-**Step 4 – Visualization**  
-📈 Confusion matrices, facies logs, predicted vs. actual plots  
-
-**Step 5 – Reporting**  
-📝 Prepare presentation summarizing methods, results, and insights  
-
----
-
-## 📂 Repository Structure  
-
-| File / Folder | Type | Description |
-|---------------|------|-------------|
-| 📓 [**facies-classification.ipynb**](./facies-classification.ipynb) | Notebook | Main ML workflow |
-| 📑 [**input_pilot_data.csv**](./input_pilot_data.csv) | Dataset | Well log dataset with facies labels |
-| 📘 [**README.md**](./README.md) | Markdown | Documentation & usage guide |
-| ⚙️ [**requirements.txt**](./requirements.txt) | Config | Python dependencies |
-| 📂 [**notebooks/**](./notebooks) | Folder | Additional Jupyter notebooks |
-| 📂 [**src/**](./src) | Folder | Source code & helper scripts |
-| 📂 [**figures/**](./figures) | Folder | Visualizations & plots |
-| 📂 [**results/**](./results) | Folder | Outputs & predictions |
+> 📁 Dataset source: *(Add source — e.g., SEG 2016 ML Contest, or your own well data)*
+> 📊 Number of samples: *(Add row count)*
+> 🔢 Number of facies classes: *(Add number)*
 
 ---
 
-## 🚀 Getting Started  
+## ⚙️ Machine Learning Workflow
 
-### 🔧 Installation  
+```
+Raw Well Log Data (.csv / .las)
+        │
+        ▼
+┌─────────────────────┐
+│  1. Data Loading &  │
+│     Exploration     │  ← Missing value analysis, log statistics, class distribution
+└────────┬────────────┘
+         │
+         ▼
+┌─────────────────────┐
+│  2. Preprocessing   │  ← Null handling, normalization/standardization, outlier removal
+└────────┬────────────┘
+         │
+         ▼
+┌─────────────────────┐
+│  3. Feature         │  ← Interaction features, lag features, depth gradients
+│     Engineering     │
+└────────┬────────────┘
+         │
+         ▼
+┌─────────────────────┐
+│  4. Model Training  │  ← Random Forest · SVM · XGBoost
+└────────┬────────────┘
+         │
+         ▼
+┌─────────────────────┐
+│  5. Evaluation      │  ← Accuracy, F1-score, Confusion Matrix, Cross-Validation
+└────────┬────────────┘
+         │
+         ▼
+┌─────────────────────┐
+│  6. Visualization   │  ← Predicted vs Actual facies logs, feature importance plots
+└─────────────────────┘
+```
 
-Clone the repository:  
+---
+
+## 🛠️ Technologies Used
+
+| Category | Library / Tool | Purpose |
+|----------|---------------|---------|
+| Language | Python 3.8+ | Core development |
+| ML Framework | Scikit-learn | Random Forest, SVM, preprocessing, evaluation |
+| Boosting | XGBoost | Gradient boosted facies classification |
+| Data Handling | Pandas, NumPy | Data wrangling, array operations |
+| Visualization | Matplotlib, Seaborn | Log plots, confusion matrices, feature importance |
+| Environment | Jupyter Notebook | Interactive development and presentation |
+
+---
+
+## 📦 Installation
+
+### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/ashraf-iit-ism/Facies-classification-using-ml.git
+git clone https://github.com/Ashraf-ISM/Facies-classification-using-ml.git
 cd Facies-classification-using-ml
+```
+
+### 2. Create a Virtual Environment (Recommended)
+
+```bash
+python -m venv venv
+source venv/bin/activate        # On Linux/Mac
+venv\Scripts\activate           # On Windows
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Or manually:
+
+```bash
+pip install numpy pandas matplotlib seaborn scikit-learn xgboost jupyter
+```
+
+---
+
+## 🚀 Usage
+
+### Run in Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+Open the main notebook:
+
+```
+notebooks/facies_classification.ipynb
+```
+
+### Run as Python Script
+
+```bash
+python src/train.py --data data/well_logs.csv --model random_forest
+```
+
+> ⚠️ *Update file paths in the notebook/script to match your local dataset location.*
+
+---
+
+## 📊 Results & Outputs
+
+### Model Performance Comparison
+
+| Model | Accuracy | F1-Score (Weighted) | Cross-Val Score |
+|-------|----------|---------------------|-----------------|
+| Random Forest | *(add %)* | *(add)* | *(add)* |
+| Support Vector Machine | *(add %)* | *(add)* | *(add)* |
+| XGBoost | *(add %)* | *(add)* | *(add)* |
+
+> 💡 *Fill in your actual scores — even approximate values make this section significantly more impactful to recruiters and researchers.*
+
+### Sample Outputs
+
+- 📉 **Facies log plots** — side-by-side comparison of predicted vs. actual facies tracks
+- 🔥 **Confusion matrix heatmaps** — per-class classification performance
+- 📊 **Feature importance charts** — which logs drive facies prediction most
+- 📈 **Cross-validation score distributions** — model stability across folds
+
+---
+
+## 🗂️ Project Structure
+
+```
+Facies-classification-using-ml/
+│
+├── data/
+│   ├── raw/                    # Original well log data (CSV/LAS)
+│   └── processed/              # Cleaned, feature-engineered data
+│
+├── notebooks/
+│   └── facies_classification.ipynb   # Main analysis notebook
+│
+├── src/
+│   ├── preprocess.py           # Data loading and preprocessing functions
+│   ├── features.py             # Feature engineering pipeline
+│   ├── train.py                # Model training and cross-validation
+│   ├── evaluate.py             # Metrics, confusion matrix, scoring
+│   └── visualize.py            # Log plots and result visualization
+│
+├── outputs/
+│   ├── figures/                # Saved plots and charts
+│   └── models/                 # Serialized trained models (.pkl)
+│
+├── requirements.txt            # Python dependencies
+├── README.md                   # Project documentation
+└── LICENSE                     # MIT License
+```
+
+> 📝 *Update this tree to match your actual repository structure if it differs.*
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] **Deep Learning integration** — implement 1D CNN or LSTM for sequential log data to capture depth-dependent patterns
+- [ ] **Unsupervised clustering** — add K-Means / DBSCAN for facies exploration without labeled data
+- [ ] **Multi-well generalization** — train across multiple wells and test cross-well prediction robustness
+- [ ] **LAS file support** — integrate `lasio` for direct ingestion of industry-standard LAS well log files
+- [ ] **Interactive dashboard** — build a Streamlit or PyQt5 GUI for non-technical users to upload logs and get predictions
+- [ ] **Uncertainty quantification** — add probabilistic outputs (e.g., prediction confidence per depth sample)
+
+---
+
+## 👨‍💻 Author
+
+**Md Ashraf Ali**
+M.Sc(Tech) Applied Geophysics | IIT (ISM) Dhanbad
+DST-INSPIRE Scholar | ONGC Intern | IISc Summer Research Fellow '24
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/ashraf-iit-ism)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-FF5722?style=flat&logo=google-chrome&logoColor=white)](https://ash-geophysics.netlify.app)
+[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=flat&logo=gmail&logoColor=white)](mailto:mdashraf6209@gmail.com)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+⭐ **If this project helped you, consider giving it a star!** ⭐
+
+*Built with curiosity, well logs, and too much coffee.*
+
+</div>
